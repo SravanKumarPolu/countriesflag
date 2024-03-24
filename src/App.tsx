@@ -1,22 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
-import React from "react";
 
+interface Countries {
+  speed: number;
+}
+
+function useCountriesFlag() {
+  const [countries, setCountries] = useState<Countries[]>([]);
+
+  useEffect(() => {
+    fetch("/countries.json")
+      .then((response) => response.json())
+      .then((data: Countries[]) => setCountries(data))
+      .catch((error) => console.error("Error fetching countries:", error));
+  }, []);
+  return { countries };
+}
 function App() {
-  const [count, setCount] = useState(0);
-
+  const { countries } = useCountriesFlag();
   return (
     <>
       <div>
         <h1>Countriesflag.com</h1>
       </div>
 
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <div>{JSON.stringify(countries)}</div>
     </>
   );
 }
