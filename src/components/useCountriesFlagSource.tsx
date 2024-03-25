@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 interface Countries {
   name: string;
@@ -7,13 +7,39 @@ interface Countries {
 }
 
 function useCountriesFlagSource() {
-  const [countries, setCountries] = useState<Countries[]>([]);
+  // const [countries, setCountries] = useState<Countries[]>([]);
+  // const [search, setSearch] = useState();
+  type CountriesState = {
+    country: Countries[];
+    search: string;
+  };
+  type CountriesAction = {
+    type: "setCounties";
+    payload: Countries[];
+  };
+  const [{ country, search }, dispatch] = useReducer(
+    (state: CountriesState, action: CountriesAction) => {
+      switch (action.type) {
+        case "setCounties":
+          return { ...state, country: action.payload };
+      }
+    },
+    {
+      country: [],
+      search: "",
+    }
+  );
+
   useEffect(() => {
     fetch("/countries.json")
       .then((response) => response.json())
-      .then((data: Countries[]) => setCountries(data));
-  }, []); // empty dependency array to run once
-  return { countries };
+      .then((data) =>
+        dispatch({
+          type: "setCounties",
+          payload: data,
+        })
+      );
+  }, []);
+  return { country, search };
 }
-
 export default useCountriesFlagSource;

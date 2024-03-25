@@ -8,8 +8,8 @@ interface Countries {
 
 const initialCountries: Countries[] = [];
 
-export const CountriesContext = createContext<{ countries: Countries[] }>({
-  countries: initialCountries,
+export const CountriesContext = createContext<{ country: Countries[] }>({
+  country: initialCountries,
 });
 
 function useCountriesFlag() {
