@@ -1,15 +1,31 @@
-import { useEffect, useState } from "react";
+import { createContext } from "react";
 import CountriesFlagList from "./components/CountriesFlagList";
-import useCountriesFlag from "./components/useCountriesFlag";
+import useCountriesFlagSource from "./components/useCountriesFlagSource";
+
+interface Countries {
+  name: string;
+  flag: string;
+  capital: string;
+}
+
+const initialCountries: Countries[] = [];
+
+const CountriesContext = createContext<{ countries: Countries[] }>({
+  countries: initialCountries,
+});
 
 function App() {
-  const { countries } = useCountriesFlag();
+  const { countries } = useCountriesFlagSource(); // Call the function to get the value
   return (
     <>
-      <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold mb-4">Countriesflag.com</h1>
-        <CountriesFlagList countries={countries} />
-      </div>
+      <CountriesContext.Provider value={{ countries }}>
+        {" "}
+        {/* Pass the actual value */}
+        <div className="container mx-auto p-4">
+          <h1 className="text-3xl font-bold mb-4">Countriesflag.com</h1>
+          <CountriesFlagList countries={countries} />
+        </div>
+      </CountriesContext.Provider>
     </>
   );
 }
