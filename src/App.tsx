@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
-import "./App.css";
-
 interface Countries {
   name: string;
   flag: string;
+  capital: string;
 }
 
 function useCountriesFlag() {
@@ -22,12 +21,13 @@ const CountriesflagList: React.FC<{ countries: Countries[] }> = ({
   countries,
 }) => {
   return (
-    <div>
+    <div className="grid grid-cols-4 gap-4">
       {countries.map((c, index) => (
         <div key={index}>
           {" "}
-          {c.flag}
+          <img src={c.flag} width={80} />
           <div>{c.name}</div>
+          <p>Capital:{c.capital}</p>
         </div>
       ))}
     </div>
@@ -37,11 +37,10 @@ function App() {
   const { countries } = useCountriesFlag();
   return (
     <>
-      <div>
-        <h1>Countriesflag.com</h1>
+      <div className="container mx-auto p-4">
+        <h1 className="text-3xl font-bold mb-4">Countriesflag.com</h1>
+        <CountriesflagList countries={countries} />
       </div>
-
-      <CountriesflagList countries={countries} />
     </>
   );
 }
