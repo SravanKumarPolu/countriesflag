@@ -12,8 +12,8 @@ export const CountriesContext = createContext<{ country: Countries[] }>({
   country: initialCountries,
 });
 
-function useCountriesFlag() {
+function useCountryFlags() {
   return useContext(CountriesContext);
 }
 
-export default useCountriesFlag;
+export default useCountryFlags;

@@ -1,7 +1,7 @@
-import useCountriesFlagSource from "./useCountriesFlagSource";
+import useCountryFlagsSource from "./useCountryFlagsSource";
 
 const SearchBar = () => {
-  const { search, setSearch } = useCountriesFlagSource();
+  const { search, setSearch } = useCountryFlagsSource();
   return (
     <input
       className="mt-3 pl-2 block w-full  rounded  text-blue-400

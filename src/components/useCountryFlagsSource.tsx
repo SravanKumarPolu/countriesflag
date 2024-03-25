@@ -7,7 +7,7 @@ interface Countries {
   setSearch: (search: string) => void;
 }
 
-function useCountriesFlagSource() {
+function useCountryFlagsSource() {
   // const [countries, setCountries] = useState<Countries[]>([]);
   // const [search, setSearch] = useState();
   type CountriesState = {
@@ -53,4 +53,4 @@ function useCountriesFlagSource() {
   }, []);
   return { country, search, setSearch };
 }
-export default useCountriesFlagSource;
+export default useCountryFlagsSource;

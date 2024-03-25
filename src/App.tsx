@@ -1,10 +1,11 @@
 import CountriesFlagList from "./components/CountriesFlagList";
 import SearchBar from "./components/SearchBar";
-import useCountriesFlagSource from "./components/useCountriesFlagSource";
-import { CountriesContext } from "./hooks/useCountriesFlag";
+import useCountryFlagsSource from "./components/useCountryFlagsSource";
+
+import { CountriesContext } from "./hooks/useCountryFlags";
 
 function App() {
-  const { country } = useCountriesFlagSource();
+  const { country } = useCountryFlagsSource();
   return (
     <>
       <CountriesContext.Provider value={{ country }}>
