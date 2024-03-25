@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 interface Countries {
-  speed: number;
+  name: string;
+  flag: string;
 }
 
 function useCountriesFlag() {
@@ -17,6 +18,21 @@ function useCountriesFlag() {
   }, []);
   return { countries };
 }
+const CountriesflagList: React.FC<{ countries: Countries[] }> = ({
+  countries,
+}) => {
+  return (
+    <div>
+      {countries.map((c, index) => (
+        <div key={index}>
+          {" "}
+          {c.flag}
+          <div>{c.name}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
 function App() {
   const { countries } = useCountriesFlag();
   return (
@@ -25,7 +41,7 @@ function App() {
         <h1>Countriesflag.com</h1>
       </div>
 
-      <div>{JSON.stringify(countries)}</div>
+      <CountriesflagList countries={countries} />
     </>
   );
 }
