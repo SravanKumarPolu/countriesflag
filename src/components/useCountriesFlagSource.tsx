@@ -1,9 +1,10 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useCallback } from "react";
 
 interface Countries {
   name: string;
   flag: string;
   capital: string;
+  setSearch: (search: string) => void;
 }
 
 function useCountriesFlagSource() {
@@ -13,15 +14,19 @@ function useCountriesFlagSource() {
     country: Countries[];
     search: string;
   };
-  type CountriesAction = {
-    type: "setCounties";
-    payload: Countries[];
-  };
+  type CountriesAction =
+    | {
+        type: "setCounties";
+        payload: Countries[];
+      }
+    | { type: "setSearch"; payload: string };
   const [{ country, search }, dispatch] = useReducer(
     (state: CountriesState, action: CountriesAction) => {
       switch (action.type) {
         case "setCounties":
           return { ...state, country: action.payload };
+        case "setSearch":
+          return { ...state, search: action.payload };
       }
     },
     {
@@ -40,6 +45,12 @@ function useCountriesFlagSource() {
         })
       );
   }, []);
-  return { country, search };
+  const setSearch = useCallback((search: string) => {
+    dispatch({
+      type: "setSearch",
+      payload: search,
+    });
+  }, []);
+  return { country, search, setSearch };
 }
 export default useCountriesFlagSource;
