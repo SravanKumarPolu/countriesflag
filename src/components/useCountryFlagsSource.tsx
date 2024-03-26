@@ -1,13 +1,11 @@
 import { useEffect, useReducer, useCallback, useMemo } from "react";
 
-interface Countries {
+export interface Countries {
   name: string;
   flag: string;
   capital: string;
-  area: number;
   setSearch: (search: string) => void;
 }
-
 function useCountryFlagsSource() {
   // const [countries, setCountries] = useState<Countries[]>([]);
   // const [search, setSearch] = useState();
@@ -37,7 +35,7 @@ function useCountryFlagsSource() {
   );
 
   useEffect(() => {
-    fetch(`/countries.json`)
+    fetch("/countries.json")
       .then((response) => response.json())
       .then((data) =>
         dispatch({
@@ -54,13 +52,10 @@ function useCountryFlagsSource() {
     });
   }, []);
   const filteredCountries = useMemo(
-    () =>
-      country.filter((p) =>
-        p.name.toLowerCase().includes(search.toLowerCase())
-      ),
+    () => country.filter((p) => p.name.includes(search)),
     [country, search]
   );
-  console.log(filteredCountries);
+
   return { country: filteredCountries, search, setSearch };
 }
 export default useCountryFlagsSource;

@@ -1,19 +1,24 @@
-import { createContext, useContext } from "react";
+import useCountryFlagsSource from "../components/useCountryFlagsSource";
+import React from "react";
 
-interface Countries {
-  name: string;
-  flag: string;
-  capital: string;
+interface CountriesProviderProps {
+  children: React.ReactNode;
 }
+const CountriesContext = React.createContext<
+  ReturnType<typeof useCountryFlagsSource>
+>({} as unknown as ReturnType<typeof useCountryFlagsSource>);
 
-const initialCountries: Countries[] = [];
+const useCountries = () => {
+  return React.useContext(CountriesContext);
+};
 
-export const CountriesContext = createContext<{ country: Countries[] }>({
-  country: initialCountries,
-});
+const CountriesProvider: React.FC<CountriesProviderProps> = ({ children }) => {
+  const contextValue = useCountryFlagsSource();
+  return (
+    <CountriesContext.Provider value={contextValue}>
+      {children}
+    </CountriesContext.Provider>
+  );
+};
 
-function useCountryFlags() {
-  return useContext(CountriesContext);
-}
-
-export default useCountryFlags;
+export { useCountries, CountriesProvider };
