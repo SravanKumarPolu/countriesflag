@@ -1,10 +1,10 @@
 import {
   useEffect,
-  useState,
   createContext,
   useContext,
   useReducer,
   useCallback,
+  useMemo,
 } from "react";
 
 interface CountryFlag {
@@ -51,7 +51,7 @@ export function useCountryFlagsSource(): {
   );
 
   useEffect(() => {
-    fetch(`/countries.json`)
+    fetch(`https://restcountries.com/v2/all`)
       .then((response) => response.json())
 
       .then((data) =>
@@ -67,7 +67,13 @@ export function useCountryFlagsSource(): {
       payload: search,
     });
   }, []);
-  return { countryFlag, search, setSearch };
+  const filteredCountryFlag = useMemo(() => {
+    return countryFlag.filter((c) =>
+      c.name.includes(search.toLocaleLowerCase().slice(0, 20))
+    );
+  }, [countryFlag, search]);
+  console.log(filteredCountryFlag);
+  return { countryFlag: filteredCountryFlag, search, setSearch };
 }
 
 const CountryFlagContext = createContext<

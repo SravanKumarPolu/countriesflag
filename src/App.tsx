@@ -18,7 +18,7 @@ const CountryFlagsList = () => {
     <ul className="grid grid-cols-3 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-3">
       {countryFlag.map((c) => (
         <li
-          key={c.callingCodes}
+          key={c.name}
           className=" col-span-1 rounded-lg text-center bg-white shadow-xl ">
           <div className="flex flex-1 flex-col p-8">
             <img src={c.flag} className="w-32 h-32 rounded-full" />
