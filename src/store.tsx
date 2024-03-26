@@ -32,16 +32,6 @@ export function useCountryFlags() {
   return useContext(CountryFlagContext);
 }
 
-export const CountryFlagsList = () => {
-  const { countryFlag } = useCountryFlags();
-  return (
-    <div>
-      {countryFlag.map((c) => (
-        <div key={c.callingCodes}>{c.name}</div>
-      ))}
-    </div>
-  );
-};
 export function CountryFlagProvider({
   children,
 }: {
