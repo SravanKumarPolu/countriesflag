@@ -50,17 +50,15 @@ export default function useCountryFlagsSource(): {
   }, []);
 
   const filteredCountryFlag = useMemo(() => {
-    return countryFlag
-      .filter((c) => c.name.toLowerCase().startsWith(search.toLowerCase()))
-      .slice(0, 20);
+    return countryFlag.filter((c) =>
+      c.name.toLowerCase().includes(search.toLowerCase())
+    );
   }, [countryFlag, search]);
 
   const sortedCountryFlag = useMemo(
-    () => [
-      ...filteredCountryFlag?.sort((a, b) => a.name.localeCompare(b.name)),
-    ],
+    () => [...filteredCountryFlag.sort((a, b) => a.name.localeCompare(b.name))],
     [filteredCountryFlag]
   );
 
-  return { countryFlag: sortedCountryFlag || [], search, setSearch };
+  return { countryFlag: filteredCountryFlag, search, setSearch };
 }

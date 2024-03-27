@@ -8,11 +8,11 @@ export const CountryFlagsList = () => {
         {countryFlag.map((c) => (
           <li
             key={c.name}
-            className=" col-span-1 rounded-lg text-center bg-white shadow-xl  ">
+            className=" col-span-1  rounded-lg text-center bg-white shadow-xl  ">
             <div className="flex flex-1 flex-col p-8 justify-center items-center">
               <img
                 src={c.flag}
-                className="w-32 h-32 align-middle rounded object-center"
+                className="w-32  h-32 align-middle rounded object-center"
               />
 
               <h2 className="py-4">{c.name}</h2>
