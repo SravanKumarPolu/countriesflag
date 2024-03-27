@@ -1,3 +1,4 @@
+import { useQuery, QueryKey } from "@tanstack/react-query";
 import { useEffect, useReducer, useCallback, useMemo } from "react";
 
 interface CountryFlag {
@@ -10,58 +11,56 @@ interface CountryFlag {
   code: string;
   independent: boolean;
 }
+
 export default function useCountryFlagsSource(): {
   countryFlag: CountryFlag[];
   search: string;
   setSearch: (search: string) => void;
 } {
-  //   const [countryFlag, setCountryFlag] = useState<CountryFlag[]>([]);
-  //   const [search, setSearch] = useState<string>("");
+  const { data: countryFlag } = useQuery<CountryFlag[], Error>({
+    queryKey: ["countryFlag"],
+    queryFn: () => fetch(`/countries.json`).then((response) => response.json()),
+    initialData: [],
+  });
 
   type CountryFlagState = {
-    countryFlag: CountryFlag[];
     search: string;
   };
-  type CountryFlagAction =
-    | {
-        type: "setCountryFlag";
-        payload: CountryFlag[];
-      }
-    | { type: "setSearch"; payload: string };
-  const [{ countryFlag, search }, dispatch] = useReducer(
+
+  type CountryFlagAction = { type: "setSearch"; payload: string };
+  const [{ search }, dispatch] = useReducer(
     (state: CountryFlagState, action: CountryFlagAction) => {
       switch (action.type) {
-        case "setCountryFlag":
-          return { ...state, countryFlag: action.payload };
         case "setSearch":
           return { ...state, search: action.payload };
+        default:
+          return state;
       }
     },
     {
-      countryFlag: [],
       search: "",
     }
   );
 
-  useEffect(() => {
-    fetch(`/countries.json`)
-      .then((response) => response.json())
-
-      .then((data) =>
-        dispatch({
-          type: "setCountryFlag",
-          payload: data,
-        })
-      );
-  }, []);
   const setSearch = useCallback((search: string) => {
     dispatch({
       type: "setSearch",
       payload: search,
     });
   }, []);
+
   const filteredCountryFlag = useMemo(() => {
-    return countryFlag.filter((c) => c.name.toLowerCase().startsWith(search));
+    return countryFlag
+      .filter((c) => c.name.toLowerCase().startsWith(search.toLowerCase()))
+      .slice(0, 20);
   }, [countryFlag, search]);
-  return { countryFlag: filteredCountryFlag, search, setSearch };
+
+  const sortedCountryFlag = useMemo(
+    () => [
+      ...filteredCountryFlag?.sort((a, b) => a.name.localeCompare(b.name)),
+    ],
+    [filteredCountryFlag]
+  );
+
+  return { countryFlag: sortedCountryFlag || [], search, setSearch };
 }
