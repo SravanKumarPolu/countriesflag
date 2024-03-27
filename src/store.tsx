@@ -1,11 +1,4 @@
-import {
-  useEffect,
-  createContext,
-  useContext,
-  useReducer,
-  useCallback,
-  useMemo,
-} from "react";
+import { useEffect, useReducer, useCallback, useMemo } from "react";
 
 interface CountryFlag {
   callingCodes: number;
@@ -17,7 +10,7 @@ interface CountryFlag {
   code: string;
   independent: boolean;
 }
-export function useCountryFlagsSource(): {
+export default function useCountryFlagsSource(): {
   countryFlag: CountryFlag[];
   search: string;
   setSearch: (search: string) => void;
@@ -51,7 +44,7 @@ export function useCountryFlagsSource(): {
   );
 
   useEffect(() => {
-    fetch(`https://restcountries.com/v2/all`)
+    fetch(`/countries.json`)
       .then((response) => response.json())
 
       .then((data) =>
@@ -72,28 +65,5 @@ export function useCountryFlagsSource(): {
       c.name.includes(search.toLocaleLowerCase().slice(0, 20))
     );
   }, [countryFlag, search]);
-  console.log(filteredCountryFlag);
   return { countryFlag: filteredCountryFlag, search, setSearch };
-}
-
-const CountryFlagContext = createContext<
-  ReturnType<typeof useCountryFlagsSource>
->({} as unknown as ReturnType<typeof useCountryFlagsSource>);
-
-export function useCountryFlags() {
-  return useContext(CountryFlagContext);
-}
-
-export function CountryFlagProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <>
-      <CountryFlagContext.Provider value={useCountryFlagsSource()}>
-        {children}
-      </CountryFlagContext.Provider>
-    </>
-  );
 }

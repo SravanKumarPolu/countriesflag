@@ -1,18 +1,11 @@
-import { CountryFlagProvider, useCountryFlags } from "./store";
-function SearchBar() {
-  const { search, setSearch } = useCountryFlags();
-  return (
-    <input
-      className="mt-3 pl-2 block w-full  rounded  text-blue-400
-      border border-gray-300 shadow-sm"
-      placeholder="search..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-    />
-  );
-}
+import { SearchBar } from "./components/SearchBar";
 
-const CountryFlagsList = () => {
+import {
+  CountryFlagProvider,
+  useCountryFlags,
+} from "./hooks/CountryFlagContext";
+
+export const CountryFlagsList = () => {
   const { countryFlag } = useCountryFlags();
   return (
     <ul className="grid grid-cols-3 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-3">
@@ -23,7 +16,7 @@ const CountryFlagsList = () => {
           <div className="flex flex-1 flex-col p-8">
             <img src={c.flag} className="w-32 h-32 rounded-full" />
 
-            <div>{c.name}</div>
+            <h2>{c.name}</h2>
           </div>
         </li>
       ))}
