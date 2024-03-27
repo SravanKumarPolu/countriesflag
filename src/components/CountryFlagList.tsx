@@ -10,10 +10,7 @@ export const CountryFlagsList = () => {
             key={c.name}
             className=" col-span-1 rounded-lg text-center bg-white shadow-xl ">
             <div className="flex flex-1 flex-col p-8 justify-center items-center">
-              <img
-                src={c.flag}
-                className="w-32 h-32 align-middle rounded-full"
-              />
+              <img src={c.flag} className="w-32 h-32 align-middle rounded" />
 
               <h2 className="py-4">{c.name}</h2>
               {/* <span>Capital:{c.capital}</span> */}

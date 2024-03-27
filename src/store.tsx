@@ -61,9 +61,7 @@ export default function useCountryFlagsSource(): {
     });
   }, []);
   const filteredCountryFlag = useMemo(() => {
-    return countryFlag.filter((c) =>
-      c.name.includes(search.toLocaleLowerCase().slice(0, 20))
-    );
+    return countryFlag.filter((c) => c.name.toLowerCase().startsWith(search));
   }, [countryFlag, search]);
   return { countryFlag: filteredCountryFlag, search, setSearch };
 }
