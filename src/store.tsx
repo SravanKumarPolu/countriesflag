@@ -1,5 +1,5 @@
-import { useQuery, QueryKey } from "@tanstack/react-query";
-import { useEffect, useReducer, useCallback, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useReducer, useCallback, useMemo } from "react";
 
 interface CountryFlag {
   callingCodes: number;
