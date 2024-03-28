@@ -3,13 +3,7 @@ import { SearchBar } from "./components/SearchBar";
 import { motion } from "framer-motion";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CountryFlagProvider } from "./hooks/CountryFlagContext";
-import {
-  Link,
-  Outlet,
-  ReactLocation,
-  Router,
-  useMatch,
-} from "@tanstack/react-location";
+import { Outlet, ReactLocation, Router } from "@tanstack/react-location";
 import CountryDetail from "./components/CountryDetail";
 
 const queryClient = new QueryClient();
@@ -25,7 +19,7 @@ const routes = [
     ),
   },
   {
-    path: "/countryFlag/:id",
+    path: "/countryFlag/:name",
     element: (
       <>
         <CountryDetail />

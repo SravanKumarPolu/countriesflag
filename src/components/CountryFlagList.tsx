@@ -7,9 +7,9 @@ export const CountryFlagsList = () => {
     <div className="overflow-y-auto h-[32rem]  ">
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ml-1 m-3">
         {countryFlag.map((c) => (
-          <Link key={c.capital} to={`/countryFlag/$[c.capital]`}>
+          <Link key={c.name} to={`/countryFlag/${c.name}`}>
             <li
-              key={c.capital}
+              key={c.name}
               className=" col-span-1  rounded-lg text-center bg-white shadow-xl  ">
               <div className="flex flex-1 flex-col p-8 justify-center items-center">
                 <img
