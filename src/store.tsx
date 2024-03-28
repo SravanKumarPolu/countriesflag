@@ -51,7 +51,7 @@ export default function useCountryFlagsSource(): {
 
   const filteredCountryFlag = useMemo(() => {
     return countryFlag.filter((c) =>
-      c.name.toLowerCase().includes(search.toLowerCase())
+      c.name.toLowerCase().startsWith(search.toLowerCase())
     );
   }, [countryFlag, search]);
 
@@ -60,5 +60,5 @@ export default function useCountryFlagsSource(): {
     [filteredCountryFlag]
   );
 
-  return { countryFlag: filteredCountryFlag, search, setSearch };
+  return { countryFlag: sortedCountryFlag, search, setSearch };
 }
