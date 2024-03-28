@@ -18,7 +18,7 @@ export const CountryFlagsList = () => {
                 />
 
                 <h2 className="py-4">{c.name}</h2>
-                {/* <span>Capital:{c.capital}</span> */}
+                <span>Capital:{c.capital}</span>
               </div>
             </li>
           </Link>
