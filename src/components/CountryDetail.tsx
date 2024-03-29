@@ -40,9 +40,9 @@ export default function CountryDetail() {
                 <path
                   d="M19 12H5m7.5-7.25L6.25 12l6.25 7.25"
                   stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </span>
@@ -81,6 +81,7 @@ export default function CountryDetail() {
           </p>
         </li>
       </ul>
+      {/* <div> {JSON.stringify(countryData)}</div> */}
     </div>
   );
 }
