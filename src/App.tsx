@@ -32,12 +32,12 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <CountryFlagProvider>
-          <div className="bg-blue-400 overflow-y-auto scrollbar-hide lg:h-[41.5rem] py-4 mx-auto p-4 max-w-6xl shadow-lg w-auto">
+          <div className="bg-blue-400 overflow-y-auto scrollbar-hide lg:h-[41.5rem]  shadow-lg w-auto">
             <motion.h1
               initial={{ opacity: 0.5, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 2.4 }}
-              className="text-4xl text-white font-bold mb-4 text-center">
+              className="text-4xl text-white m-4 font-bold mb-4 text-center">
               Countryflags.com
             </motion.h1>
             <Router location={location} routes={routes}>
