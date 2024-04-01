@@ -9,7 +9,40 @@ export default function CountryDetail() {
   const countryData = countryFlag.find((c) => c.name === name);
 
   if (!countryData) {
-    return <div>No Country Found</div>;
+    return (
+      <div className="h-[1080px]">
+        <Link to="/" className="  mb-4  ">
+          <div
+            className=" bg-slate-400 w-36  shadow-md text-xl 
+    font-semibold  px-6 m-1  hover:bg-slate-500">
+            <div className="flex justify-around align-middle text-center hover:translate-x-4 transition-transform duration-333 ease-in-out">
+              <span className="py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="dig-UIIcon dig-UIIcon--standard"
+                  width="24"
+                  height="24"
+                  role="presentation"
+                  focusable="false">
+                  <path
+                    d="M19 12H5m7.5-7.25L6.25 12l6.25 7.25"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <span className="text-center pt-1">Back</span>
+            </div>
+          </div>
+
+          <h2 className=" text-center mt-10">No Country Found</h2>
+        </Link>
+      </div>
+    );
   }
   const {
     flag,
