@@ -37,7 +37,7 @@ function App() {
               initial={{ opacity: 0.5, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 2.4 }}
-              className="text-4xl text-white m-4 font-bold mb-4 text-center">
+              className=" san-Montserrat text-4xl text-white m-4 font-bold mb-4 text-center">
               Countryflags.com
             </motion.h1>
             <Router location={location} routes={routes}>
