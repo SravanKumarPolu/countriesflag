@@ -12,3 +12,6 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+.DM {
+  font-family: "DM Sans";
+}

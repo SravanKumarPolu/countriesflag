@@ -6,7 +6,7 @@ export const CountryFlagsList = () => {
   const { countryFlag } = useCountryFlags();
   return (
     <div className="mx-5 mr-3">
-      <div className=" lg:h-[41rem] h-auto overflow-y-auto scrollbar-hide ">
+      <div className=" lg:h-[41rem] h-full overflow-y-auto scrollbar-hide ">
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ml-1 m-3 ">
           {countryFlag.map((c) => (
             <Link key={c.name} to={`./countryFlag/${c.name}`}>
@@ -21,7 +21,7 @@ export const CountryFlagsList = () => {
                     className="flex bg-cyan-500  w-40 h-40 justify-center items-center rounded-sm">
                     <img
                       src={c.flag}
-                      className="w-32  h-32 align-middle rounded object-center shadow-md"
+                      className="px-1 align-middle rounded object-center shadow-md"
                     />
                   </motion.div>
 
@@ -33,7 +33,7 @@ export const CountryFlagsList = () => {
                     {c.name}
                   </motion.h2>
                   <motion.span
-                    className="  "
+                    className="DM "
                     initial={{ opacity: 0.1, y: 100 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 3.4 }}>

@@ -10,15 +10,15 @@ export default function CountryDetail() {
 
   if (!countryData) {
     return (
-      <div className="h-[1080px]">
+      <div className="h-full">
         <Link to="/" className="  mb-4  ">
           <div
             className=" bg-slate-400 w-36  shadow-md text-xl 
     font-semibold  px-6 m-1  hover:bg-slate-500">
-            <div className="flex justify-around align-middle text-center hover:translate-x-4 transition-transform duration-333 ease-in-out">
-              <span className="py-2">
+            <div className="flex justify-around align-middle text-center text-white">
+              <span className="text-center pt-1">Back</span>
+              <span className="py-2 hover:translate-x-4 transition-transform duration-500 ease-in-out">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
                   className="dig-UIIcon dig-UIIcon--standard"
@@ -27,15 +27,13 @@ export default function CountryDetail() {
                   role="presentation"
                   focusable="false">
                   <path
-                    d="M19 12H5m7.5-7.25L6.25 12l6.25 7.25"
+                    d="M5 11.75h12m-5.25-6.5 6.25 6.5-6.25 6.5"
                     stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    vector-effect="non-scaling-stroke"></path>
                 </svg>
               </span>
-              <span className="text-center pt-1">Back</span>
             </div>
           </div>
 
@@ -59,10 +57,14 @@ export default function CountryDetail() {
       <Link to="/" className=" text-white mb-4 ">
         <h1 className=" bg-slate-400 w-36  shadow-md text-2xl font-semibold  px-6 m-1">
           {/* <span className=" w-14 mr-2">&#8592;</span> */}
-          <div className="flex justify-around align-middle text-center hover:translate-x-4 transition-transform duration-333 ease-in-out">
-            <span className="py-2">
+        </h1>
+        <div
+          className=" bg-slate-400 w-36  shadow-md text-xl 
+    font-semibold  px-6 m-1  hover:bg-slate-500">
+          <div className="flex justify-around align-middle text-center ">
+            <span className="text-center pt-1">Back</span>
+            <span className="py-2 hover:translate-x-4 transition-transform duration-500 ease-in-out">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
                 className="dig-UIIcon dig-UIIcon--standard"
@@ -71,17 +73,15 @@ export default function CountryDetail() {
                 role="presentation"
                 focusable="false">
                 <path
-                  d="M19 12H5m7.5-7.25L6.25 12l6.25 7.25"
+                  d="M5 11.75h12m-5.25-6.5 6.25 6.5-6.25 6.5"
                   stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  vector-effect="non-scaling-stroke"></path>
               </svg>
             </span>
-            <span className="text-center pt-1">Back</span>
           </div>
-        </h1>
+        </div>
       </Link>
       <ul className="flex flex-col items-center justify-center gap-4">
         <div>
